@@ -1,0 +1,12 @@
+.centered {
+    text-align: center;
+}
+
+.title {
+    color: rgb(230, 230, 230);
+}
+
+.button {
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+}
