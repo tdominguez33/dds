@@ -1,0 +1,1 @@
+- La lista de temas, una vez conseguido el ID del tema, deberia sacar la info del nombre haciendo una solicitud al endpoint de los temas, no de la info que tiene metida adentro del curso

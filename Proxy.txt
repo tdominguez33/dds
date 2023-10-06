@@ -1,0 +1,13 @@
+Instalar:
+npm install -g local-cors-proxy
+
+Endpoint que tiene problemas:
+http://localhost:8080/cursos
+
+Iniciamos el proxy:
+lcp --proxyUrl http://localhost:8080
+
+Las consultas ahora se hacen en:
+http://localhost:8010/proxy/cursos
+
+

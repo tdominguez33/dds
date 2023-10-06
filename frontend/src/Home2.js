@@ -2,43 +2,48 @@ import React, { useEffect, useState } from 'react';
 import "./Home.css"
 
 function Home2() {
-  const [Cursos, setCursos] = useState(null);
-  const [ListaCursos, setListaCursos] = useState(null)
+  const [ListaTemas, setListaTemas] = useState(null)
 
   useEffect(() => {
     // Realiza la solicitud a la URL
     fetch('http://localhost:8010/proxy/cursos')
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Error en la solicitud');
+          throw new Error('Error en la solicitud')
         }
-        return response.json();
+        return response.json()
       })
       .then((jsonData) => {
-        setCursos(jsonData);
-        listarCursos(jsonData)
+        listarTemas(jsonData)
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   }, []);
   
-  const listarCursos = (array) => {
-    let cursos = []
+  const listarTemas = (array) => {
+    let ids = []
+    let temas = []
     for(let i = 0; i < array.length; i++){
-      cursos.push(array[i].nombre);
+      if (!ids.includes(array[i].tema.id)){
+        ids.push(array[i].tema.id)
+        console.log(ids)
+        temas.push(array[i].tema.nombre)
+        console.log(temas)
+      }
+      
     }
-    setListaCursos(cursos.map(curso => <li>{curso}</li>));
-    console.log(ListaCursos);
+    setListaTemas(temas.map(tema => <li class="temaLista"><button class="botonLista">{tema}</button></li>))
+    console.log(ListaTemas)
   };
   
 
   return (
     <div className="Home2">
-      {(ListaCursos !== null)? (
+      {(ListaTemas !== null)? (
         <div class="centered">
-          <h1 class="title">Cursos: {Cursos[0].nombre}</h1>
-          <ul>{ListaCursos}</ul>
+          <h1 class="title">Temas:</h1>
+          <ul class="noPadding">{ListaTemas}</ul>
         </div>
       ) : (
         <div class="centered">

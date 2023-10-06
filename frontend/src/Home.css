@@ -10,3 +10,19 @@
     color: rgb(0, 0, 0);
     font-size: 17px;
 }
+
+.temaLista {
+    list-style-type: none;
+}
+
+.botonLista {
+    color: rgb(230, 230, 230);
+    font-size: 25px;
+    padding-bottom: 10px;
+    border: none;
+    background: none;
+}
+
+.noPadding {
+    padding: 0px;
+}
