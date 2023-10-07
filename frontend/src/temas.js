@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import "./Home.css"
+import { Routes, Route, Link } from 'react-router-dom';
+import "./temas.css"
+import Cursos from './cursos';
 
-function Home2() {
+function Temas() {
   const [ListaTemas, setListaTemas] = useState(null)
 
   useEffect(() => {
@@ -24,17 +26,22 @@ function Home2() {
   const listarTemas = (array) => {
     let ids = []
     let temas = []
+    let lista = []
+
+    // Filtramos los repetidos, guardamos los ids y los nombres de los cursos
     for(let i = 0; i < array.length; i++){
       if (!ids.includes(array[i].tema.id)){
         ids.push(array[i].tema.id)
-        console.log(ids)
         temas.push(array[i].tema.nombre)
-        console.log(temas)
       }
-      
     }
-    setListaTemas(temas.map(tema => <li class="temaLista"><button class="botonLista">{tema}</button></li>))
-    console.log(ListaTemas)
+
+    // Generamos el código HTML para cada tema disponible
+    for(let i = 0; i < ids.length; i++){
+      lista.push(<li class="temaLista"><Link to={`./cursos/${ids[i]}`}><button class="botonLista">{temas[i]}</button></Link></li>)
+    }
+    console.log(lista)
+    setListaTemas(lista)
   };
   
 
@@ -42,9 +49,19 @@ function Home2() {
     <div className="Home2">
       {(ListaTemas !== null)? (
         <div class="centered">
+          <div>
           <h1 class="title">Temas:</h1>
           <ul class="noPadding">{ListaTemas}</ul>
+          </div>
+
+          <div class="temaInfo">
+          <Routes>
+            <Route path="/cursos/:id" element={<Cursos />} />
+          </Routes>
+          </div>
+
         </div>
+        
       ) : (
         <div class="centered">
           <h1 class="title">Cargando...</h1>
@@ -54,4 +71,4 @@ function Home2() {
   );
 }
 
-export default Home2;
+export default Temas;

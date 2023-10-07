@@ -1,0 +1,46 @@
+.centered {
+    text-align: left;
+    margin-left: 25px;
+    display:flex; 
+    flex-direction:row;
+}
+
+.title {
+    color: rgb(0, 0, 0);
+}
+
+.button {
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+}
+
+.temaLista {
+    list-style-position:inside;
+    border: 3px solid black;
+    border-radius: 10px;
+    list-style-type: none;
+    margin-bottom: 2px;
+}
+
+.temaLista:hover {
+    background-color: rgba(65, 74, 209, 0.808);
+}
+
+.botonLista {
+    color: rgb(36, 36, 36);
+    font-size: 25px;
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: none;
+    background: none;
+}
+
+.noPadding {
+    padding: 0px;
+}
+
+.temaInfo {
+    margin-top: 50px;
+    margin-left: 50px;
+}

@@ -1,0 +1,3 @@
+- La lista de temas, una vez conseguido el ID del tema, deberia sacar la info del nombre haciendo una solicitud al endpoint de los temas, no de la info que tiene metida adentro del curso
+- La página temas.js TAL VEZ tendria que sacar los temas haciendo un fetch al endpoint de los temas en vez del de los cursos. TAL VEZ
+- Ordenar un poco los archivos.
