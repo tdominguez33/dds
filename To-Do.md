@@ -1,3 +1,5 @@
 - La lista de temas, una vez conseguido el ID del tema, deberia sacar la info del nombre haciendo una solicitud al endpoint de los temas, no de la info que tiene metida adentro del curso
 - La página temas.js TAL VEZ tendria que sacar los temas haciendo un fetch al endpoint de los temas en vez del de los cursos. TAL VEZ
 - Ordenar un poco los archivos.
+- Añadir un botón para agregar un nuevo curso a un determinado tema (Tal vez se podria hacer con los temas tambien). La idea es que el botón se vea como si fuera un curso pero que tenga un '+' al centro. [EN PROCESO]
+- Agregar chequeos para los datos que se cargan (que los campos no esten vacios, que sean válidos, etc)

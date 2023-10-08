@@ -1,6 +1,6 @@
 # Diseño de Sistemas 2023 - UTN FRD
 
-Trabajo práctico, comunicación de frontend React con Backend Java y base de datos MySQL dockerizada.
+Trabajo práctico, comunicación de frontend React con Backend Java y motor de base de datos MySQL dockerizado.
 
 #### Pasos para su correcta ejecución:
 

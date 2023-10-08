@@ -1,6 +1,9 @@
 
 # Changelog
 
+## V0.4 - 08/10/2023
+- Agregada página de carga de cursos, ya se pueden escribir los datos y hacer un POST, los cambios se ven reflejados en la base de datos exitosamente.
+
 ## V0.3 - 07/10/2023
 
 - Ahora se pueden visualizar los diferentes cursos de cada tema.

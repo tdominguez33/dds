@@ -3,6 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import "./App.css"
 import Home from './Home';
 import Temas from './temas';
+import CrearCurso from "./crearCurso"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/temas/*" element={<Temas />} />
+          <Route path="/crearCurso/:idTema/:idCurso" element={<CrearCurso />} />
       </Routes>
     </body>
   );
