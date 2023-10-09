@@ -47,8 +47,7 @@ function Cursos(props) {
 
         //Generamos el código HTML para crear un nuevo curso
         // Parametro1 -> Desde que Tema estoy creando un nuevo Curso
-        // Parametro2 -> ID que deberia tener el nuevo curso para no repetir las anteriores
-        setBotonVolver(<Link to={`/crearCurso/${id}/${array.length + 1}`}><li class="temaLista"><button class="botonLista">+</button></li></Link>)
+        setBotonVolver(<Link to={`/crearCurso/${id}`}><li class="temaListaAgregar"><button class="botonLista">+</button></li></Link>)
 
         // Generamos el código HTML que muestra todos los cursos de un mismo tema
         for(let i = 0; i < cursosID.length; i++){

@@ -1,6 +1,11 @@
 
 # Changelog
 
+## V0.5 - 09/10/2024
+- A la hora de crear un curso ahora hay chequeos para que no de error la carga por campos vacios.
+- Cambios estéticos a la página de carga de cursos.
+- Añadida una versión muy básica de la lista de alumnos.
+
 ## V0.4 - 08/10/2023
 - Agregada página de carga de cursos, ya se pueden escribir los datos y hacer un POST, los cambios se ven reflejados en la base de datos exitosamente.
 

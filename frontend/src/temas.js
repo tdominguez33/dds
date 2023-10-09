@@ -8,7 +8,7 @@ function Temas() {
 
   useEffect(() => {
     // Realiza la solicitud a la URL
-    fetch('http://localhost:8010/proxy/cursos')
+    fetch('http://localhost:8010/proxy/temas')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error en la solicitud')
@@ -28,12 +28,10 @@ function Temas() {
     let temas = []
     let lista = []
 
-    // Filtramos los repetidos, guardamos los ids y los nombres de los cursos
+    // Filtramos los repetidos, guardamos los ids y los nombres de los temas
     for(let i = 0; i < array.length; i++){
-      if (!ids.includes(array[i].tema.id)){
-        ids.push(array[i].tema.id)
-        temas.push(array[i].tema.nombre)
-      }
+      ids.push(array[i].id)
+      temas.push(array[i].nombre)
     }
 
     // Generamos el código HTML para cada tema disponible
@@ -47,7 +45,7 @@ function Temas() {
 
   return (
     <div className="Home2">
-      {(ListaTemas !== null)? (
+      {(ListaTemas !== null) ? (
         <div class="centered">
           <div>
           <h1 class="title">Temas:</h1>

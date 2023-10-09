@@ -1,0 +1,2 @@
+- Por más que se cargue hora no se guarda
+- El ID de docente solo puede llegar hasta 3, cualquier valor superior y la carga falla

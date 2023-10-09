@@ -1,19 +1,86 @@
+html, body, #app, #app>div {
+    height: 100%
+}
+
+.titulo {
+    margin-right: 100px;
+}
+
 .textoLargo {
     width: 200px;
     padding: 10px 15px;
-    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
 }
 
 .textoCorto {
     width: 50px;
     padding: 10px 10px;
-    border-radius: 4px;
+    display: inline-block;
 }
+
+.container{
+    display: flex;
+    align-items: center;
+    width: 40%;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 100px auto;
+}
+
+.submitButton{
+    background-color: #4CAF50;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 15px 32px;
+    transition-duration: 0.4s;
+    border: 2px solid #4CAF50;
+    cursor: pointer;
+    display:inline-block;
+}
+
+.submitButton:hover{
+    background-color: white;
+    color: #4CAF50;
+}
+
+.estadoSubida{
+    display:inline-block;
+    margin-left: 15px;
+}
+
+.contador{
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 16px;
+}
+
+.contador:empty::before {
+    content:"";
+    display:inline-block;
+  }
 
 select {
     width: 200px;
     padding: 16px 20px;
-    border: none;
+}
+
+input, select {
+    display: block;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #d1d1d1;
-  }
+    margin-bottom: 15px;
+}
+
+input[type="date"], input[type="time"]{
+    font-size: 20px;
+    padding: 10px
+}
+
+h1{
+    margin-top: 0px;
+    margin-bottom: 20px;
+}

@@ -6,7 +6,7 @@ import './crearCurso.css'
 const moment = require('moment');
 
 function CrearCurso() { 
-    const { idTema, idCurso } = useParams()
+    const { idTema } = useParams()
 
     // Respuesta JSON
     const [ResponseTemas, setResponseTemas] = useState(null)
@@ -15,19 +15,26 @@ function CrearCurso() {
     const [ListaOpciones, setListaOpciones] = useState(null)
     
     // Valores propios del curso
-    const [NombreCurso, setNombreCurso] = useState("");
-    const [IdDocente, setIdDocente] = useState("");
+    const [NombreCurso, setNombreCurso] = useState("")
+    const [IdDocente, setIdDocente] = useState("")
     const fechaMinima = moment().add(1, 'days').format().slice(0, 10)
     const horaMinima = moment().format().slice(11, 16)
-    const [FechaCurso, setFechaCurso] = useState(fechaMinima);   // Valor predeterminado -> Fecha Actual
-    const [HoraCurso, setHoraCurso] = useState(horaMinima);   // Valor predeterminado -> Fecha Actual
+    const [FechaCurso, setFechaCurso] = useState(fechaMinima)   // Valor predeterminado -> Fecha Actual
+    const [HoraCurso, setHoraCurso] = useState(horaMinima)      // Valor predeterminado -> Fecha Actual
 
     // Valores relacionados al tema del curso
-    const [IdTema, setIdTema] = useState("");
-    const [NombreTema, setNombreTema] = useState("");
-    const [DuracionTema, setDuracionTema] = useState("");
+    const [IdTema, setIdTema] = useState("")
+    const [NombreTema, setNombreTema] = useState("")
+    const [DuracionTema, setDuracionTema] = useState("")
 
-    const [RequestOptions, setRequestOptions] = useState("");
+    // Configuración del POST
+    const [RequestOptions, setRequestOptions] = useState("")
+
+    // Estado Solicitud
+    const [EstadoPOST, setEstadoPOST] = useState(-1)
+
+    const caracteresNombre = 25
+    const caracteresID = 1
     
     // Ejecutamos cuando se carga la página
     useEffect(() => {
@@ -88,6 +95,30 @@ function CrearCurso() {
         return fecha + 'T' + hora + ':00.000+00:00'
     }
 
+    const contarCaracteresNombre = (nombre) => {
+        return nombre.length
+    }
+
+    const contarCaracteresID = (id) => {
+        return id.length
+    }
+
+    const mensajeEstado = () => {
+        switch(EstadoPOST){
+            case -1:
+                return <p class="estadoSubida"></p>
+            case 0:
+                return <p class="estadoSubida">Subida Exitosa</p>
+            case 1:
+                return <p class="estadoSubida">Ingrese un nombre de curso de al menos 4 caracteres</p>
+            case 2:
+                return <p class="estadoSubida">Ingrese un ID de docente</p>
+            case 3:
+                return <p class="estadoSubida">Elija un tema de la lista</p>
+
+        }
+    }
+
     // REQUEST POST
 
     const requestBody = () => {
@@ -117,6 +148,19 @@ function CrearCurso() {
 
 
     const crearCurso = () => {
+
+        if (NombreCurso.length < 4){
+            setEstadoPOST(1)
+            return
+        }
+        if (IdDocente.length < 1){
+            setEstadoPOST(2)
+            return
+        }
+        if (IdTema == ""){
+            setEstadoPOST(3)
+            return
+        }
         fetch('http://localhost:8010/proxy/cursos', RequestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -124,16 +168,33 @@ function CrearCurso() {
                 }
                 console.log("POST Exitoso!")
             })
+
+            setEstadoPOST(0)
     }
 
     return (
-        <div>
-            <h1>Creación de Curso</h1>
+        <div class="container">
+            <h1 class="titulo">Creación de Curso</h1>
             <form>
                 <label>Nombre: </label>
-                <input type="text" class="textoLargo" maxlength="25" value={NombreCurso} onChange={(e) => setNombreCurso(e.target.value)}/>
+                <div class="inputContador">
+                    <input type="text" class="textoLargo" maxlength={caracteresNombre} value={NombreCurso} onChange={(e) => setNombreCurso(e.target.value)}/>
+                    {(contarCaracteresNombre(NombreCurso) === 0) ? (
+                        <p class="contador"></p>
+                    ) : (
+                        <p class="contador">{contarCaracteresNombre(NombreCurso)}/{caracteresNombre}</p>
+                    )}
+                    
+                </div>
                 <label>ID Docente: </label>
-                <input type="text" class="textoCorto" maxlength="4" value={IdDocente} onChange={(e) => verificarNumero(e.target.value)}/>
+                <div class="inputContador">
+                    <input type="text" class="textoCorto" maxlength={caracteresID} value={IdDocente} onChange={(e) => verificarNumero(e.target.value)}/>
+                    {(contarCaracteresID(IdDocente) === 0) ? (
+                        <p class="contador"></p>
+                    ) : (
+                        <p class="contador">{contarCaracteresID(IdDocente)}/{caracteresID}</p>
+                    )}
+                </div>
                 
                 <label>Tema: </label>
                 {/*Tengo dudas de como y porque la siguiente linea funciona, pero por ahora lo dejo así*/}
@@ -144,7 +205,9 @@ function CrearCurso() {
                 <label>Hora: </label>
                 <input type="time" value={HoraCurso} min={moment().format().slice(11, 16)} onChange={(e) => setHoraCurso(e.target.value)}/>
 
-                <button type="button" onClick={crearCurso}>Crear Curso</button>
+                <button type="button" class="submitButton" onClick={crearCurso}>Crear Curso</button>
+                {mensajeEstado()}
+                
 
             </form>
         </div>

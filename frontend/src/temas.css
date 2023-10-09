@@ -16,13 +16,21 @@
 
 .temaLista {
     list-style-position:inside;
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius: 10px;
     list-style-type: none;
     margin-bottom: 2px;
 }
+.temaListaAgregar {
+    list-style-position:inside;
+    border: 2px solid black;
+    border-radius: 10px;
+    list-style-type: none;
+    margin-bottom: 2px;
+    text-align: center;
+}
 
-.temaLista:hover {
+.temaLista:hover, .temaListaAgregar:hover {
     background-color: rgba(65, 74, 209, 0.808);
 }
 
@@ -34,6 +42,7 @@
     padding-right: 30px;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .noPadding {
