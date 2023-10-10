@@ -1,0 +1,20 @@
+.containerMateriales{
+    display: grid;
+    grid-template-areas: 'nombre costo stock submit';
+}
+
+.inputNombreMaterial{
+    grid-area: nombre;
+}
+
+.inputCostoMaterial{
+    grid-area: costo;
+}
+
+.inputStockMaterial{
+    grid-area: stock;
+}
+
+.submitMaterial{
+    grid-area: submit;
+}  

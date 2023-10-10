@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import "./temas.css"
+import "./css/temas.css"
 import Cursos from './cursos';
 
 function Temas() {
@@ -42,14 +42,16 @@ function Temas() {
     setListaTemas(lista)
   };
   
-
   return (
-    <div className="Home2">
+    <div>
       {(ListaTemas !== null) ? (
         <div class="centered">
           <div>
           <h1 class="title">Temas:</h1>
-          <ul class="noPadding">{ListaTemas}</ul>
+          <ul class="noPadding">
+            <Link to={`/crearTema`}><li class="temaListaAgregar"><button class="botonLista">+</button></li></Link>
+            {ListaTemas}
+          </ul>
           </div>
 
           <div class="temaInfo">

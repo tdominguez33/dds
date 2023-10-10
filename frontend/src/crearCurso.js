@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import './crearCurso.css'
+import './css/crear.css'
 
 // Libreria Moment.js - npm install moment
 const moment = require('moment');
@@ -49,7 +49,6 @@ function CrearCurso() {
             .then((jsonData) => {
                 setResponseTemas(jsonData)
                 opcionesTemas(jsonData)
-                console.log(convertirFecha(fechaMinima, horaMinima))
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -74,9 +73,17 @@ function CrearCurso() {
 
     const opcionesTemas = (json) => {
         let opciones = []
-        opciones.push(<option value="" selected disabled hidden>Seleccione un Tema</option>)
+        //opciones.push(<option value="" selected disabled hidden>Seleccione un Tema</option>)
         for(let i = 0; i < json.length; i++){
-            opciones.push(<option value={json[i].id}>{json[i].nombre}</option>)
+            if(json[i].id == idTema){
+                opciones.push(<option value={json[i].id} selected>{json[i].nombre}</option>)
+                setIdTema(json[i].id)
+                setNombreTema(json[i].nombre)
+                setDuracionTema(json[i].duracion)
+            }else{
+                opciones.push(<option value={json[i].id}>{json[i].nombre}</option>)
+            }
+            
         }
 
         setListaOpciones(opciones)
@@ -173,43 +180,46 @@ function CrearCurso() {
     }
 
     return (
-        <div class="container">
-            <h1 class="titulo">Creación de Curso</h1>
-            <form>
-                <label>Nombre: </label>
-                <div class="inputContador">
-                    <input type="text" class="textoLargo" maxlength={caracteresNombre} value={NombreCurso} onChange={(e) => setNombreCurso(e.target.value)}/>
-                    {(contarCaracteresNombre(NombreCurso) === 0) ? (
-                        <p class="contador"></p>
-                    ) : (
-                        <p class="contador">{contarCaracteresNombre(NombreCurso)}/{caracteresNombre}</p>
-                    )}
+        <div>
+            <Link to={`/temas/cursos/${idTema}`}><button class="backButtonCrearCurso">&lt; Volver</button></Link>
+            <div class="container">
+                <h1 class="titulo">Creación de Curso</h1>
+                <form class="formCreacionCurso">
+                    <label>Nombre: </label>
+                    <div>
+                        <input type="text" class="textoLargo" maxlength={caracteresNombre} value={NombreCurso} onChange={(e) => setNombreCurso(e.target.value)}/>
+                        {(contarCaracteresNombre(NombreCurso) === 0) ? (
+                            <p class="contador"></p>
+                        ) : (
+                            <p class="contador">{contarCaracteresNombre(NombreCurso)}/{caracteresNombre}</p>
+                        )}
+                        
+                    </div>
+                    <label>ID Docente: </label>
+                    <div>
+                        <input type="text" class="textoCorto" maxlength={caracteresID} value={IdDocente} onChange={(e) => verificarNumero(e.target.value)}/>
+                        {(contarCaracteresID(IdDocente) === 0) ? (
+                            <p class="contador"></p>
+                        ) : (
+                            <p class="contador">{contarCaracteresID(IdDocente)}/{caracteresID}</p>
+                        )}
+                    </div>
                     
-                </div>
-                <label>ID Docente: </label>
-                <div class="inputContador">
-                    <input type="text" class="textoCorto" maxlength={caracteresID} value={IdDocente} onChange={(e) => verificarNumero(e.target.value)}/>
-                    {(contarCaracteresID(IdDocente) === 0) ? (
-                        <p class="contador"></p>
-                    ) : (
-                        <p class="contador">{contarCaracteresID(IdDocente)}/{caracteresID}</p>
-                    )}
-                </div>
-                
-                <label>Tema: </label>
-                {/*Tengo dudas de como y porque la siguiente linea funciona, pero por ahora lo dejo así*/}
-                <select value={IdTema} onChange={(e) => setIdTema(e.target.value)}>{ListaOpciones}</select>
+                    <label>Tema: </label>
+                    {/*Tengo dudas de como y porque la siguiente linea funciona, pero por ahora lo dejo así*/}
+                    <select value={IdTema} onChange={(e) => setIdTema(e.target.value)}>{ListaOpciones}</select>
 
-                <label>Fecha: </label>
-                <input type="date" value={FechaCurso} min={moment().format().slice(0, 10)} onChange={(e) => setFechaCurso(e.target.value)}/>
-                <label>Hora: </label>
-                <input type="time" value={HoraCurso} min={moment().format().slice(11, 16)} onChange={(e) => setHoraCurso(e.target.value)}/>
+                    <label>Fecha: </label>
+                    <input type="date" value={FechaCurso} min={moment().format().slice(0, 10)} onChange={(e) => setFechaCurso(e.target.value)}/>
+                    <label>Hora: </label>
+                    <input type="time" value={HoraCurso} min={moment().format().slice(11, 16)} onChange={(e) => setHoraCurso(e.target.value)}/>
 
-                <button type="button" class="submitButton" onClick={crearCurso}>Crear Curso</button>
-                {mensajeEstado()}
-                
+                    <button type="button" class="submitButton" onClick={crearCurso}>Crear Curso</button>
+                    {mensajeEstado()}
+                    
 
-            </form>
+                </form>
+            </div>
         </div>
     )
   }

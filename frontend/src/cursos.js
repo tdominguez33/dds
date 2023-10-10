@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import "./cursos.css"
+import "./css/cursos.css"
 
 function Cursos(props) {
     const { id } = useParams() //Obtenemos el valor de ID desde la URL
-    const [BotonVolver, setBotonVolver] = useState(null)
+    const [BotonCrear, setBotonCrear] = useState(null)
     const [ListaCursos, setListaCursos] = useState(null)
     
     useEffect(() => {
@@ -47,12 +47,12 @@ function Cursos(props) {
 
         //Generamos el código HTML para crear un nuevo curso
         // Parametro1 -> Desde que Tema estoy creando un nuevo Curso
-        setBotonVolver(<Link to={`/crearCurso/${id}`}><li class="temaListaAgregar"><button class="botonLista">+</button></li></Link>)
+        setBotonCrear(<Link to={`/crearCurso/${id}`}><li class="temaListaAgregar"><button class="botonLista">+</button></li></Link>)
 
         // Generamos el código HTML que muestra todos los cursos de un mismo tema
         for(let i = 0; i < cursosID.length; i++){
             //lista.push(<li class="temaLista"><button class="botonLista">Nombre: {cursosNombres[i]} - Fecha Inicio: {cursosFechas[i]} - Horario: {cursosHorarios[i]}</button></li>)
-            lista.push(<li class="temaLista"><button class="botonLista">Nombre: {cursosNombres[i]} - Fecha Inicio: {cursosFechas[i]}</button></li>)
+            lista.push(<li class="temaLista"><Link to={`/infoCurso/${cursosID[i]}`}><button class="botonLista">Nombre: {cursosNombres[i]} - Fecha Inicio: {cursosFechas[i]}</button></Link></li>)
         }
 
         setListaCursos(lista)
@@ -61,9 +61,9 @@ function Cursos(props) {
 
     return (
         <div>
-            <Link to="/temas/cursos"><button class="backButton">&lt; Cerrar</button></Link>
+            <Link to="/temas"><button class="backButton">&lt; Cerrar</button></Link>
             <ul>
-                {BotonVolver}
+                {BotonCrear}
                 {ListaCursos}
             </ul>
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import "./css/alumnos.css"
 
 function Alumnos(){
     const [ListaAlumnos, setListaAlumnos] = useState(null)
@@ -23,20 +23,27 @@ function Alumnos(){
     
 
     const listarAlumnos = (array) => {
-        let ids = []
-        let nombres = []
         let lista = []
     
         for(let i = 0; i < array.length; i++){
-          lista.push(<li class="alumnoLista">{i + 1} - {array[i].nombre} - {array[i].fechaNacimiento}</li>)
+          lista.push(<tr class="trAlumnos"><td>{i + 1}</td><td>{array[i].nombre}</td><td>{array[i].fechaNacimiento}</td></tr>)
         }
         setListaAlumnos(lista)
     };
 
     return(
         <div>
-            <h1>Lista de Alumnos:</h1>
-            <ul>{ListaAlumnos}</ul>
+            <h1 class="tituloAlumnos">Lista de Alumnos:</h1>
+            <div class="listaAlumnos">
+                <table class="tablaAlumnos">
+                    <tr>
+                        <th class="columnaID">ID</th>
+                        <th class="columnaNombre">Nombre</th>
+                        <th class="columnaFechaNacimiento">Fecha de Nacimiento</th>
+                    </tr>
+                    {ListaAlumnos}
+                </table>
+            </div>
         </div>
     )
 }

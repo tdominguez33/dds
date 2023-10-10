@@ -2,31 +2,48 @@ html, body, #app, #app>div {
     height: 100%
 }
 
+.backButtonCrearCurso{
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 2%;
+    margin-left: 15%;
+}
+
 .titulo {
-    margin-right: 100px;
+    height: 100%;
+    width: 80%;
+    grid-area: titulo;
 }
 
 .textoLargo {
-    width: 200px;
+    width: 70%;
     padding: 10px 15px;
     box-sizing: border-box;
     display: inline-block;
 }
 
 .textoCorto {
-    width: 50px;
+    width: 20%;
     padding: 10px 10px;
     display: inline-block;
 }
 
 .container{
-    display: flex;
+    display: grid;
+    grid-template-areas: 'titulo form';
     align-items: center;
-    width: 40%;
+    width: 50%;
     border-radius: 10px;
     background-color: #f2f2f2;
     padding: 20px;
-    margin: 100px auto;
+    margin: 0px auto;
+}
+
+.formCreacionCurso{
+    width: 100%;
+    grid-area: form;
 }
 
 .submitButton{
@@ -54,14 +71,15 @@ html, body, #app, #app>div {
 
 .contador{
     display: inline-block;
-    margin-left: 5px;
-    margin-bottom: 16px;
+    margin-left: 2%;
+    width:50px
 }
 
 .contador:empty::before {
     content:"";
     display:inline-block;
-  }
+    width:50px
+}
 
 select {
     width: 200px;
@@ -78,9 +96,4 @@ input, select {
 input[type="date"], input[type="time"]{
     font-size: 20px;
     padding: 10px
-}
-
-h1{
-    margin-top: 0px;
-    margin-bottom: 20px;
 }

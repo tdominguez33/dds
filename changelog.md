@@ -1,7 +1,15 @@
 
 # Changelog
 
-## V0.5 - 09/10/2024
+## V0.6 - 10/10/2023
+- Versión inicial de creación de tema, la carga de materiales por el momento no funciona.
+- Ahora hay un botón para volver en la página de creación de cursos que nos lleva a la sección especifica en la que estabamos antes.
+- Eliminada página inicial de ejemplo.
+- Mejorada visualización de la tabla de alumnos.
+- Ahora los archivos css están en su propia carpeta.
+- Cambios estéticos.
+
+## V0.5 - 09/10/2023
 - A la hora de crear un curso ahora hay chequeos para que no de error la carga por campos vacios.
 - Cambios estéticos a la página de carga de cursos.
 - Añadida una versión muy básica de la lista de alumnos.
