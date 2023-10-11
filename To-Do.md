@@ -5,5 +5,8 @@
 - Agregar chequeos para los datos que se cargan (que los campos no esten vacios, que sean válidos, etc). [LISTO]
 - Cambiar la fuente por alguna que no sea la predeterminada.
 - Boton para volver para atrás en la creación de cursos. [LISTO]
-- Agregar materiales a la creación de tema.
+- Agregar materiales a la creación de tema. [EN PROCESO]
 - Marcar el tema sobre el que estamos parados cuando vemos los cursos.
+- Que el mensaje de exito de carga se desvanezca después de unos segundos.
+- Agregar controles cuando se agrega un material.
+- Borrar los campos cuando se ingresa un material.

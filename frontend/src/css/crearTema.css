@@ -1,20 +1,68 @@
-.containerMateriales{
+.containerTema{
     display: grid;
-    grid-template-areas: 'nombre costo stock submit';
+    grid-template-areas: 'titulo form';
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    width: 50%;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 0px auto;
+}
+
+.tituloTema{
+    width: 80%;
+    height: 100%;
+    grid-area: titulo;
+}
+
+.formCreacionTema{
+    width: 100%;
+    grid-area: form;
 }
 
 .inputNombreMaterial{
-    grid-area: nombre;
+    width: 95%;
 }
 
 .inputCostoMaterial{
-    grid-area: costo;
+    width: 95%;
 }
 
 .inputStockMaterial{
-    grid-area: stock;
+    width: 95%;
 }
 
-.submitMaterial{
-    grid-area: submit;
-}  
+.tablaMateriales{
+    width:100%;
+}
+
+.tablaMateriales {
+    width: 100%; /* Ancho total de la tabla */
+    border-collapse: collapse;
+}
+  
+/* Estilos para las celdas del encabezado (th) */
+.tablaMateriales th {
+    text-align: left;
+    padding: 8px;
+}
+  
+/* Ancho específico para cada columna */
+.columnaNombreMaterial {
+    width: 50%; /* Ancho de la columna "Nombre" */
+    margin: 0px;
+    border-radius: 0px;
+}
+  
+.columnaCostoMaterial {
+    width: 20%; /* Ancho de la columna "Costo" */
+}
+
+.columnaStockMaterial {
+    width: 20%; /* Ancho de la columna "Stock" */
+}
+  
+.columnaAccionMaterial {
+    width: 10%; /* Ancho de la columna "Acción" */
+}

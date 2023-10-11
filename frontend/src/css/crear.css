@@ -33,6 +33,7 @@ html, body, #app, #app>div {
 .container{
     display: grid;
     grid-template-areas: 'titulo form';
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     width: 50%;
     border-radius: 10px;

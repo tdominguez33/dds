@@ -1,6 +1,9 @@
 
 # Changelog
 
+## V0.7 - 11/10/2023
+- La página de creación de temas (con carga de materiales básica) está funcionando.
+
 ## V0.6 - 10/10/2023
 - Versión inicial de creación de tema, la carga de materiales por el momento no funciona.
 - Ahora hay un botón para volver en la página de creación de cursos que nos lleva a la sección especifica en la que estabamos antes.
