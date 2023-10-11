@@ -37,7 +37,7 @@ function Temas() {
     // Generamos el código HTML para cada tema disponible
     // Cada elemento de la lista linkea a /temas/cursos/id con id el valor de id que tiene asociado cada tema
     for(let i = 0; i < ids.length; i++){
-      lista.push(<li class="temaLista"><Link to={`./cursos/${ids[i]}`}><button class="botonLista">{temas[i]}</button></Link></li>)
+      lista.push(<Link to={`./cursos/${ids[i]}`}><li class="temaLista"><button class="botonLista">{temas[i]}</button></li></Link>)
     }
     setListaTemas(lista)
   };

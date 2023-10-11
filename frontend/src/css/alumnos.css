@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-table, th, td{
+.listaAlumnos table, .listaAlumnos th, .listaAlumnos td{
     width: 40%;
     border:1px solid;
     border-collapse: collapse;

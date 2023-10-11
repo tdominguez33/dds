@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import './css/crear.css'
+import { Link } from 'react-router-dom';
 import './css/crearTema.css'
 
-// Libreria Moment.js - npm install moment
-const moment = require('moment');
-
 function CrearTema() { 
-
-    // Respuesta JSON
-    const [ResponseTemas, setResponseTemas] = useState(null)
 
     // Valores del tema
     const [NombreTema, setNombreTema] = useState("")
@@ -21,10 +14,12 @@ function CrearTema() {
     const [StockMaterial, setStockMaterial] = useState("")
     const [Materiales, setMateriales] = useState([])
 
-    const [IdNuevoTema, setIdNuevoTema] = useState(0)
+    // Variable que habilita el botón para agregar un material
+    const [HabilitarBoton, setHabilitarBoton] = useState(false)
 
     // Código HTMl
     const [ListaMateriales, setListaMateriales] = useState([])
+    var varCodigoHTML = [];
 
     // Configuración del POST
     const [RequestOptionsTema, setRequestOptionsTema] = useState("")
@@ -52,14 +47,14 @@ function CrearTema() {
 
     const mensajeEstado = () => {
         switch(EstadoPOST){
-            case -1:
-                return <p class="estadoSubida"></p>
             case 0:
-                return <p class="estadoSubida">Subida Exitosa</p>
+                return <p class="estadoSubidaTema">Subida Exitosa</p>
             case 1:
-                return <p class="estadoSubida">Ingrese un nombre de tema de al menos 4 caracteres</p>
+                return <p class="estadoSubidaTema">Ingrese un nombre de tema de al menos 4 caracteres</p>
             case 2:
-                return <p class="estadoSubida">Ingrese una duración</p>
+                return <p class="estadoSubidaTema">Ingrese una duración</p>
+            default:
+                return <p class="estadoSubidaTema"></p>
         }
     }
 
@@ -70,11 +65,41 @@ function CrearTema() {
             listaHTML.push(ListaMateriales[i])
             lista.push(Materiales[i])
         }
-        listaHTML.push(<tr><td>{NombreMaterial}</td><td>{CostoMaterial}</td><td>{StockMaterial}</td><td><button>X</button></td></tr>)
+        listaHTML.push(<tr><td>{NombreMaterial}</td><td>{CostoMaterial}</td><td>{StockMaterial}</td><td><button type ="button" class="deleteMaterial" onClick={() => removerMaterialLista(listaHTML.length - 1)}>X</button></td></tr>)
         lista.push({titulo: NombreMaterial, costo: CostoMaterial, stock: StockMaterial})
         setListaMateriales(listaHTML)
         setMateriales(lista)
+        // Borramos los campos
+        setNombreMaterial("")
+        setCostoMaterial("")
+        setStockMaterial("")
+
+        // Borrado de elementos [NO FUNCIONA]
+        varCodigoHTML = listaHTML
     }
+
+    // NO FUNCIONA
+    const removerMaterialLista = (posicion) => {
+        let listaHTML = varCodigoHTML
+        listaHTML.splice(posicion, 1)
+        varCodigoHTML = listaHTML
+        setListaMateriales(listaHTML)
+    }
+
+    // Habilitamos el boton de carga de datos basados en si hay cosas escritas en los campos o no
+    useEffect(() => {
+        if(NombreMaterial.length > 3 && CostoMaterial.length > 0 && StockMaterial.length > 0){
+            setHabilitarBoton(false)
+        }else{
+            setHabilitarBoton(true)
+        }
+    }, [NombreMaterial, CostoMaterial, StockMaterial])
+
+    // Quitamos el cartel de error o éxito despues de unos segundos
+    useEffect(() => {
+        const timer = setTimeout(() => {setEstadoPOST(-1)}, 3000);
+        return () => clearTimeout(timer);
+    }, [EstadoPOST])
 
     // REQUEST POST
 
@@ -129,24 +154,21 @@ function CrearTema() {
                 return response.json()})
             .then((data) =>{
                 console.log("POST Exitoso!")
-                setIdNuevoTema(data.id)
+                cargarMateriales(data.id)
             })
 
         setEstadoPOST(0)
-
-        // Carga de Materiales
-        cargarMateriales(IdNuevoTema)
+        
     }
 
     const cargarMateriales = (idTema) => {
-        let idTemaNuevo = idTema + 1
         for(let i = 0; i < Materiales.length; i++){
             let requestOptionsMateriales =
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     // No se porque hay que sumarle 1
-                    body: requestBodyMateriales(Materiales[i].titulo, Materiales[i].costo, idTemaNuevo, Materiales[i].stock)
+                    body: requestBodyMateriales(Materiales[i].titulo, Materiales[i].costo, idTema, Materiales[i].stock)
                 }
             
             fetch('http://localhost:8010/proxy/materiales', requestOptionsMateriales)
@@ -167,22 +189,22 @@ function CrearTema() {
                 <h1 class="tituloTema">Creación de Tema</h1>
                 <form class="formCreacionTema">
                     <label>Nombre: </label>
-                    <div>
-                        <input type="text" class="textoLargo" maxlength={caracteresNombre} value={NombreTema} onChange={(e) => setNombreTema(e.target.value)}/>
+                    <div class="textoLargoContadorTema">
+                        <input type="text" class="textoLargoTema" maxlength={caracteresNombre} value={NombreTema} onChange={(e) => setNombreTema(e.target.value)}/>
                         {(contarCaracteresNombre(NombreTema) === 0) ? (
-                            <p class="contador"></p>
+                            <p class="contadorTema"></p>
                         ) : (
-                            <p class="contador">{contarCaracteresNombre(NombreTema)}/{caracteresNombre}</p>
+                            <p class="contadorTema">{contarCaracteresNombre(NombreTema)}/{caracteresNombre}</p>
                         )}
                         
                     </div>
                     <label>Duración: </label>
-                    <div>
-                        <input type="text" class="textoCorto" maxlength={caracteresDuracion} value={DuracionTema} onChange={(e) => verificarNumero(e.target.value, setDuracionTema)}/>
+                    <div class="textoCortoContadorTema">
+                        <input type="text" class="textoCortoTema" maxlength={caracteresDuracion} value={DuracionTema} onChange={(e) => verificarNumero(e.target.value, setDuracionTema)}/>
                         {(contarCaracteresDuracion(DuracionTema) === 0) ? (
-                            <p class="contador"></p>
+                            <p class="contadorTema"></p>
                         ) : (
-                            <p class="contador">{contarCaracteresDuracion(DuracionTema)}/{caracteresDuracion}</p>
+                            <p class="contadorTema">{contarCaracteresDuracion(DuracionTema)}/{caracteresDuracion}</p>
                         )}
                     </div>
                     <label>Materiales: </label>
@@ -196,22 +218,18 @@ function CrearTema() {
                                 </tr>
                                 {ListaMateriales}
                                 <tr>
-                                    <td><input type="text" placeholder="Nombre..." class="inputNombreMaterial" value={NombreMaterial} onChange={(e) => setNombreMaterial(e.target.value)}/></td>
-                                    <td><input type="text" placeholder="Costo..." class="inputCostoMaterial" value={CostoMaterial} onChange={(e) => verificarNumero(e.target.value, setCostoMaterial)}/></td>
-                                    <td><input type="text" placeholder="Stock..." class="inputStockMaterial" value={StockMaterial} onChange={(e) => verificarNumero(e.target.value, setStockMaterial)}/></td>
-                                    <td><button type="button" class="submitMaterial" onClick={agregarMaterialLista}>+</button></td>
+                                    <td class="celdaInput"><input type="text" placeholder="Nombre..." class="inputNombreMaterial" value={NombreMaterial} maxLength="25" onChange={(e) => setNombreMaterial(e.target.value)}/></td>
+                                    <td class="celdaInput"><input type="text" placeholder="Costo..." class="inputCostoMaterial" value={CostoMaterial} maxLength="9" onChange={(e) => verificarNumero(e.target.value, setCostoMaterial)}/></td>
+                                    <td class="celdaInput"><input type="text" placeholder="Stock..." class="inputStockMaterial" value={StockMaterial} maxLength="6" onChange={(e) => verificarNumero(e.target.value, setStockMaterial)}/></td>
+                                    <td class="celdaInput"><button type="button" class="submitMaterial" disabled={HabilitarBoton} onClick={() => agregarMaterialLista()}>+</button></td>
                                 </tr>
                         </table>
                     </div>
 
-                    <button type="button" class="submitButton" onClick={crearTema}>Crear Tema</button>
+                    <button type="button" class="submitButtonTema" onClick={crearTema}>Crear Tema</button>
                     {mensajeEstado()}
                 </form>
             </div>
-
-            <h1>{NombreMaterial}</h1>
-            <h1>{CostoMaterial}</h1>
-            <h1>{StockMaterial}</h1>
         </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import './css/crear.css'
+import './css/crearCurso.css'
 
 // Libreria Moment.js - npm install moment
 const moment = require('moment');
@@ -73,7 +73,9 @@ function CrearCurso() {
 
     const opcionesTemas = (json) => {
         let opciones = []
-        //opciones.push(<option value="" selected disabled hidden>Seleccione un Tema</option>)
+        if(idTema == 0){
+            opciones.push(<option value="" selected disabled hidden>Seleccione un Tema</option>)
+        }
         for(let i = 0; i < json.length; i++){
             if(json[i].id == idTema){
                 opciones.push(<option value={json[i].id} selected>{json[i].nombre}</option>)
@@ -113,15 +115,15 @@ function CrearCurso() {
     const mensajeEstado = () => {
         switch(EstadoPOST){
             case -1:
-                return <p class="estadoSubida"></p>
+                return <p class="estadoSubidaCurso"></p>
             case 0:
-                return <p class="estadoSubida">Subida Exitosa</p>
+                return <p class="estadoSubidaCurso">Subida Exitosa</p>
             case 1:
-                return <p class="estadoSubida">Ingrese un nombre de curso de al menos 4 caracteres</p>
+                return <p class="estadoSubidaCurso">Ingrese un nombre de curso de al menos 4 caracteres</p>
             case 2:
-                return <p class="estadoSubida">Ingrese un ID de docente</p>
+                return <p class="estadoSubidaCurso">Ingrese un ID de docente</p>
             case 3:
-                return <p class="estadoSubida">Elija un tema de la lista</p>
+                return <p class="estadoSubidaCurso">Elija un tema de la lista</p>
 
         }
     }
@@ -182,26 +184,26 @@ function CrearCurso() {
     return (
         <div>
             <Link to={`/temas/cursos/${idTema}`}><button class="backButtonCrearCurso">&lt; Volver</button></Link>
-            <div class="container">
-                <h1 class="titulo">Creación de Curso</h1>
+            <div class="containerCurso">
+                <h1 class="tituloCurso">Creación de Curso</h1>
                 <form class="formCreacionCurso">
                     <label>Nombre: </label>
-                    <div>
-                        <input type="text" class="textoLargo" maxlength={caracteresNombre} value={NombreCurso} onChange={(e) => setNombreCurso(e.target.value)}/>
+                    <div class="textoLargoContadorCurso">
+                        <input type="text" class="textoLargoCurso" maxlength={caracteresNombre} value={NombreCurso} onChange={(e) => setNombreCurso(e.target.value)}/>
                         {(contarCaracteresNombre(NombreCurso) === 0) ? (
-                            <p class="contador"></p>
+                            <p class="contadorCurso"></p>
                         ) : (
-                            <p class="contador">{contarCaracteresNombre(NombreCurso)}/{caracteresNombre}</p>
+                            <p class="contadorCurso">{contarCaracteresNombre(NombreCurso)}/{caracteresNombre}</p>
                         )}
                         
                     </div>
                     <label>ID Docente: </label>
-                    <div>
-                        <input type="text" class="textoCorto" maxlength={caracteresID} value={IdDocente} onChange={(e) => verificarNumero(e.target.value)}/>
+                    <div class="textoCortoContadorCurso">
+                        <input type="text" class="textoCortoCurso" maxlength={caracteresID} value={IdDocente} onChange={(e) => verificarNumero(e.target.value)}/>
                         {(contarCaracteresID(IdDocente) === 0) ? (
-                            <p class="contador"></p>
+                            <p class="contadorCurso"></p>
                         ) : (
-                            <p class="contador">{contarCaracteresID(IdDocente)}/{caracteresID}</p>
+                            <p class="contadorCurso">{contarCaracteresID(IdDocente)}/{caracteresID}</p>
                         )}
                     </div>
                     
@@ -214,7 +216,7 @@ function CrearCurso() {
                     <label>Hora: </label>
                     <input type="time" value={HoraCurso} min={moment().format().slice(11, 16)} onChange={(e) => setHoraCurso(e.target.value)}/>
 
-                    <button type="button" class="submitButton" onClick={crearCurso}>Crear Curso</button>
+                    <button type="button" class="submitButtonCurso" onClick={crearCurso}>Crear Curso</button>
                     {mensajeEstado()}
                     
 

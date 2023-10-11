@@ -1,6 +1,10 @@
 
 # Changelog
 
+## V0.8 - 11/10/2023
+- Mejoras en la UX de carga de materiales.
+- Cambios estéticos.
+
 ## V0.7 - 11/10/2023
 - La página de creación de temas (con carga de materiales básica) está funcionando.
 

@@ -21,6 +21,16 @@
     list-style-type: none;
     margin-bottom: 2px;
 }
+
+.temaListaActual {
+    list-style-position:inside;
+    border: 2px solid black;
+    border-radius: 10px;
+    list-style-type: none;
+    margin-bottom: 2px;
+    background-color: aqua;
+}
+
 .temaListaAgregar {
     list-style-position:inside;
     border: 2px solid black;
