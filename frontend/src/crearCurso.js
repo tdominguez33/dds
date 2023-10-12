@@ -128,6 +128,17 @@ function CrearCurso() {
         }
     }
 
+    // Hacemos que la primer letra sea mayúscula para despues poder ordenar exitosamente
+    const convertirNombreCurso = (nombreCurso) => {
+        let letra = nombreCurso.charAt(0)
+        letra = letra.toUpperCase()
+        let arrayFinal = nombreCurso.slice(1)
+        arrayFinal = letra.concat(arrayFinal)
+
+        setNombreCurso(arrayFinal)
+
+    }
+
     // REQUEST POST
 
     const requestBody = () => {
@@ -189,7 +200,7 @@ function CrearCurso() {
                 <form class="formCreacionCurso">
                     <label>Nombre: </label>
                     <div class="textoLargoContadorCurso">
-                        <input type="text" class="textoLargoCurso" maxlength={caracteresNombre} value={NombreCurso} onChange={(e) => setNombreCurso(e.target.value)}/>
+                        <input type="text" class="textoLargoCurso" maxlength={caracteresNombre} value={NombreCurso} onChange={(e) => convertirNombreCurso(e.target.value)}/>
                         {(contarCaracteresNombre(NombreCurso) === 0) ? (
                             <p class="contadorCurso"></p>
                         ) : (

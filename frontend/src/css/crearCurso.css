@@ -102,21 +102,21 @@ html, body, #app, #app>div {
 }
 
 .submitButtonCurso{
-    background-color: #4CAF50;
+    background-color: #00A375;
     text-align: center;
     color: white;
     font-size: 16px;
     border: none;
     padding: 15px 32px;
     transition-duration: 0.4s;
-    border: 2px solid #4CAF50;
+    border: 2px solid #00A375;
     cursor: pointer;
     display:inline-block;
 }
 
 .submitButtonCurso:hover{
     background-color: white;
-    color: #4CAF50;
+    color: #00A375;
 }
 
 .estadoSubidaCurso{

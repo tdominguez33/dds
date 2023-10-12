@@ -67,22 +67,29 @@ function InfoCurso(){
                 <Link to={`/temas/cursos/${IdTemaCurso}`}><button class="backButtonInfoCurso">&lt; Volver</button></Link>
                 <h1 class="tituloInfoCurso">Información del Curso: </h1>
                 <div class="datosInfoCurso">
-                    <p>Nombre del Curso: {NombreCurso}</p>
-                    <p>Fecha del Curso: {FechaCurso}</p>
-                    <p>ID del docente: {DocenteCurso}</p>
-                    <p>Tema: {NombreTema}</p>
-                    <p>Duración: {DuracionTema}</p>
-                    <p>Materiales:</p>
-                    <div class="listaMaterialesInfoCurso">
-                        <table class="tablaMaterialesInfoCurso">
-                            <tr>
-                                <th class="columnaNombreInfoCurso">Nombre</th>
-                                <th class="columnaPrecioInfoCurso">Precio</th>
-                                <th class="columnaStockInfoCurso">Stock</th>
-                            </tr>
-                            {ListaFiltrada}
-                        </table>
-                    </div>
+                    <p>Nombre del Curso: <p class="textoClaro">{NombreCurso}</p></p>
+                    <p>Fecha del Curso: <p class="textoClaro">{FechaCurso}</p></p>
+                    <p>ID del docente: <p class="textoClaro">{DocenteCurso}</p></p>
+                    <p>Tema: <p class="textoClaro">{NombreTema}</p></p>
+                    <p>Duración: <p class="textoClaro">{DuracionTema}</p></p>
+                    {(ListaFiltrada.length > 0) ? (
+                        <div>
+                            <p>Materiales:</p>
+                                <div class="listaMaterialesInfoCurso">
+                                    <table class="tablaMaterialesInfoCurso">
+                                        <tr>
+                                            <th class="columnaNombreInfoCurso">Nombre</th>
+                                            <th class="columnaPrecioInfoCurso">Precio</th>
+                                            <th class="columnaStockInfoCurso">Stock</th>
+                                        </tr>
+                                        {ListaFiltrada}
+                                    </table>
+                                </div>
+                        </div>
+                    ):(
+                        <p></p>
+                    )
+                    }
                 </div>
                     
             </div>

@@ -1,8 +1,9 @@
 .centered {
-    text-align: left;
-    margin-left: 25px;
-    display:flex; 
-    flex-direction:row;
+    display:grid; 
+    grid-template-areas: 'temas cursos';
+    grid-template-columns: 1fr 2fr;
+    width: 80%;
+    margin: auto;
 }
 
 .title {
@@ -20,15 +21,7 @@
     border-radius: 10px;
     list-style-type: none;
     margin-bottom: 2px;
-}
-
-.temaListaActual {
-    list-style-position:inside;
-    border: 2px solid black;
-    border-radius: 10px;
-    list-style-type: none;
-    margin-bottom: 2px;
-    background-color: aqua;
+    background-color: #BAB6B5;
 }
 
 .temaListaAgregar {
@@ -38,15 +31,21 @@
     list-style-type: none;
     margin-bottom: 2px;
     text-align: center;
+    background-color: #00CC92;
 }
 
-.temaLista:hover, .temaListaAgregar:hover {
-    background-color: rgba(65, 74, 209, 0.808);
+.temaLista:hover{
+    background-color: #888281;
+}
+
+.temaListaAgregar:hover{
+    background-color: #00A375;
 }
 
 .botonLista {
     color: rgb(36, 36, 36);
     font-size: 25px;
+    font-family: 'Kanit';
     padding: 5px;
     padding-left: 30px;
     padding-right: 30px;
@@ -59,7 +58,12 @@
     padding: 0px;
 }
 
-.temaInfo {
+.vistaTemas{
+    grid-area: temas;
+}
+
+.vistaCursos {
+    grid-area: cursos;
     margin-top: 50px;
     margin-left: 50px;
 }

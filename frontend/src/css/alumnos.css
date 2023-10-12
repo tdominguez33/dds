@@ -15,6 +15,11 @@
     table-layout: fixed;
 }
 
+.listaAlumnos td{
+    font-family: 'Kanit';
+    font-weight: 300;
+}
+
 .tituloAlumnos{
     margin:20px
 }

@@ -34,11 +34,27 @@ function Temas() {
       temas.push(array[i].nombre)
     }
 
+    // Ordenar Alfabeticamente
+    let listaCombinada = []
+    for(let i = 0; i < temas.length; i++){
+      listaCombinada.push({'id': ids[i], 'tema': temas[i]})
+    }
+
+    listaCombinada.sort(function(a, b){
+      if (a.tema < b.tema){
+        return -1
+      }else{
+        return 1
+      }
+    })
+
+
     // Generamos el código HTML para cada tema disponible
     // Cada elemento de la lista linkea a /temas/cursos/id con id el valor de id que tiene asociado cada tema
     for(let i = 0; i < ids.length; i++){
-      lista.push(<Link to={`./cursos/${ids[i]}`}><li class="temaLista" onClick={() => {window.scrollTo({top: 0, left: 0, behavior: 'smooth'});}}><button class="botonLista">{temas[i]}</button></li></Link>)
+      lista.push(<Link to={`./cursos/${listaCombinada[i].id}`}><li class="temaLista" onClick={() => {window.scrollTo({top: 0, left: 0, behavior: 'smooth'});}}><button class="botonLista">{listaCombinada[i].tema}</button></li></Link>)
     }
+
     setListaTemas(lista)
   };
   
@@ -46,15 +62,15 @@ function Temas() {
     <div>
       {(ListaTemas !== null) ? (
         <div class="centered">
-          <div>
-          <h1 class="title">Temas:</h1>
-          <ul class="noPadding">
-            <Link to={`/crearTema`}><li class="temaListaAgregar"><button class="botonLista">+</button></li></Link>
-            {ListaTemas}
-          </ul>
+          <div class="vistaTemas">
+            <h1 class="title">Temas:</h1>
+            <ul class="noPadding">
+              <Link to={`/crearTema`}><li class="temaListaAgregar"><button class="botonLista">+</button></li></Link>
+              {ListaTemas}
+            </ul>
           </div>
 
-          <div class="temaInfo">
+          <div class="vistaCursos">
           <Routes>
             {/* Especificamos el nombre que va tener el parametro */}
             <Route path="/cursos/:id" element={<Cursos />} />

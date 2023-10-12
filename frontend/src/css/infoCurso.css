@@ -20,6 +20,11 @@
     font-size: 20px;
     cursor: pointer;
 }
+.textoClaro{
+    display: inline;
+    font-family: 'Kanit';
+    font-weight: 300;
+}
 
 .tituloInfoCurso{
     grid-area: titulo;

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, json } from 'react-router-dom';
 import "./css/cursos.css"
 
 function Cursos(props) {
     const { id } = useParams() //Obtenemos el valor de ID desde la URL
     const [BotonCrear, setBotonCrear] = useState(null)
     const [ListaCursos, setListaCursos] = useState(null)
+    const [NombreTema, setNombreTema] = useState("")
     
     useEffect(() => {
         // Realiza la solicitud a la URL
@@ -24,6 +25,27 @@ function Cursos(props) {
         });
     }, [id]);   // Ejecutamos la función cada vez que id cambia
 
+
+    // Cambiamos el titulo de la pagina cada vez que cambiamos de tema
+    useEffect(() => {
+        // Realiza la solicitud a la URL
+        let url = 'http://localhost:8010/proxy/temas/' + id
+        fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud')
+            }
+            return response.json()
+        })
+        .then((jsonData) => {
+            setNombreTema(jsonData.nombre)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }, [id]);   // Ejecutamos la función cada vez que id cambia
+
+    
 
     // Buscamos entre todos los cursos del array aquellos cuyo id coincide
     const listarCursos = (array, id) => {
@@ -52,7 +74,7 @@ function Cursos(props) {
         // Generamos el código HTML que muestra todos los cursos de un mismo tema
         for(let i = 0; i < cursosID.length; i++){
             //lista.push(<li class="temaLista"><button class="botonLista">Nombre: {cursosNombres[i]} - Fecha Inicio: {cursosFechas[i]} - Horario: {cursosHorarios[i]}</button></li>)
-            lista.push(<li class="temaLista"><Link to={`/infoCurso/${cursosID[i]}`}><button class="botonLista">Nombre: {cursosNombres[i]} - Fecha Inicio: {cursosFechas[i]}</button></Link></li>)
+            lista.push(<li class="temaLista"><Link to={`/infoCurso/${cursosID[i]}`}><button class="botonLista">Nombre: {cursosNombres[i]}  -  Fecha de Inicio: {cursosFechas[i]}</button></Link></li>)
         }
 
         setListaCursos(lista)
@@ -62,6 +84,7 @@ function Cursos(props) {
     return (
         <div>
             <Link to="/temas"><button class="backButton">&lt; Cerrar</button></Link>
+            <h2 class="tituloListaCursos">Cursos de {NombreTema}</h2>
             <ul>
                 {BotonCrear}
                 {ListaCursos}

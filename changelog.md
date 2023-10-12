@@ -1,6 +1,11 @@
 
 # Changelog
 
+## V0.10 - 12/10/2023
+- Cambios estéticos mayores (Cambios de colores, de posicionamientos, de fuente, entre otros menores).
+- Ahora los temas están ordenados en orden alfabético.
+- Ahora si un tema no tiene materiales asociados no se va a mostrar la tabla de materiales en el detalle de curso.
+
 ## V0.9 - 11/10/2023
 - Añadida página de detalles de curso, esta muestra todos los datos del curso pero también del tema asociado (Materiales incluidos).
 - Ahora si cliqueamos un tema que está al fondo de la página esta sube automaticamente.

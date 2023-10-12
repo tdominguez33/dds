@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import "./css/App.css"
+import "./css/fuentes.css"
 import Temas from './temas';
 import Alumnos from './Alumnos';
 import CrearCurso from "./crearCurso"
@@ -11,6 +12,7 @@ function App() {
   return (
     <body>
       <div class="topnav">
+        <Link to="/"><a class="tituloPagina">Diseño de Sistemas</a></Link>
         <Link to="/temas"><a class="navbarBoton">Temas</a></Link>
         <Link to="/alumnos"><a class="navbarBoton">Alumnos</a></Link>
         <Link to="/crearTema"><a class="navbarBoton">Crear Tema</a></Link>

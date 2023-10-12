@@ -7,9 +7,10 @@
 - Boton para volver para atrás en la creación de cursos. [LISTO]
 - Agregar materiales a la creación de tema. [EN PROCESO (Falta poder borrar antes de cargar)]
 - Marcar el tema sobre el que estamos parados cuando vemos los cursos.
-- Que el mensaje de exito de carga se desvanezca después de unos segundos. [LISTO (Medio Feo)]
+- Que el mensaje de exito de carga se desvanezca después de unos segundos. [EN PROCESO (Falta Cusos)]
 - Agregar controles cuando se agrega un material. [LISTO]
 - Borrar los campos cuando se ingresa un material. [LISTO]
-- Ordenar Temas y Cursos por orden alfabético, no por ID.
-- Agregar información del curso cuando se hace click en un curso en especifico. [EN PROCESO]
-- Si un tema no tiene materiales asociados no mostrar la tabla.
+- Ordenar Temas y Cursos por orden alfabético, no por ID. [LISTO TEMAS]
+- Agregar información del curso cuando se hace click en un curso en especifico. [LISTO]
+- Si un tema no tiene materiales asociados no mostrar la tabla. [LISTO]
+- Borrar campos cuando se crea un tema o curso.

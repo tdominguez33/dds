@@ -1,2 +1,3 @@
 - Por más que se cargue hora no se guarda
 - El ID de docente solo puede llegar hasta 3, cualquier valor superior y la carga falla
+- La base de datos no es consistente con que temas te deja borrar, si tiene cursos casi seguro que no, pero a veces tampoco deja borrar temas que no tienen ningún curso.
