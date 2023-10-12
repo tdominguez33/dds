@@ -1,9 +1,14 @@
 
 # Changelog
 
+## V0.9 - 11/10/2023
+- Añadida página de detalles de curso, esta muestra todos los datos del curso pero también del tema asociado (Materiales incluidos).
+- Ahora si cliqueamos un tema que está al fondo de la página esta sube automaticamente.
+
 ## V0.8 - 11/10/2023
 - Mejoras en la UX de carga de materiales.
 - Cambios estéticos.
+- Cambiados archivos CSS que hacian referencia a elementos generales como .input que afectaban a todas las páginas.
 
 ## V0.7 - 11/10/2023
 - La página de creación de temas (con carga de materiales básica) está funcionando.

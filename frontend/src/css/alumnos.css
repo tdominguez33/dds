@@ -3,8 +3,11 @@
     justify-content: center;
 }
 
-.listaAlumnos table, .listaAlumnos th, .listaAlumnos td{
+.tablaAlumnos{
     width: 40%;
+}
+
+.listaAlumnos table, .listaAlumnos th, .listaAlumnos td{
     border:1px solid;
     border-collapse: collapse;
     font-size: 20px;

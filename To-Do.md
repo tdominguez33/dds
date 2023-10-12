@@ -11,4 +11,5 @@
 - Agregar controles cuando se agrega un material. [LISTO]
 - Borrar los campos cuando se ingresa un material. [LISTO]
 - Ordenar Temas y Cursos por orden alfabético, no por ID.
-- Agregar información del curso cuando se hace click en un curso en especifico.
+- Agregar información del curso cuando se hace click en un curso en especifico. [EN PROCESO]
+- Si un tema no tiene materiales asociados no mostrar la tabla.

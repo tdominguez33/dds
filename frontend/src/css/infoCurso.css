@@ -1,0 +1,69 @@
+.containerInfoCurso{
+    display: grid;
+    grid-template-areas:
+        'volver vacio'
+        'vacio2 titulo'
+        'vacio3 informacion';
+
+    grid-template-columns: 1fr 7fr;
+    width: 50%;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 2% auto;
+}
+
+.backButtonInfoCurso{
+    grid-area: volver;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.tituloInfoCurso{
+    grid-area: titulo;
+    margin-top: 0px;
+}
+
+.datosInfoCurso{
+    grid-area: informacion;
+    width: 100%;
+}
+
+.listaMaterialesInfoCurso{
+    display: flex;
+    justify-content: center;
+}
+
+.tablaMaterialesInfoCurso{
+    width: 100%;
+}
+
+.listaMaterialesInfoCurso table, .listaMaterialesInfoCurso th, .listaMaterialesInfoCurso td{
+    /*width: 100%;*/
+    border:1px solid;
+    border-collapse: collapse;
+    font-size: 20px;
+    text-align: center;
+    table-layout: fixed;
+}
+
+.trMaterialInfoCurso:hover{
+    background-color: #ddd;
+}
+
+.columnaNombreInfoCurso{
+    width: 50%;
+    overflow: hidden;
+}
+
+.columnaPrecioInfoCurso{
+    width: 25%;
+    overflow: hidden;
+}
+
+.columnaStockInfoCurso{
+    width: 25%;
+    overflow: hidden;
+}
