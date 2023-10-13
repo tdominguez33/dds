@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, json } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import "./css/cursos.css"
 
 function Cursos(props) {
@@ -83,12 +83,20 @@ function Cursos(props) {
 
     return (
         <div>
-            <Link to="/temas"><button class="backButton">&lt; Cerrar</button></Link>
-            <h2 class="tituloListaCursos">Cursos de {NombreTema}</h2>
-            <ul>
-                {BotonCrear}
-                {ListaCursos}
-            </ul>
+            {(NombreTema != "") ? (
+                <div>
+                    <Link to="/temas"><button class="backButton">&lt; Cerrar</button></Link>
+                    <h2 class="tituloListaCursos">Cursos de {NombreTema}</h2>
+                    <ul>
+                        {BotonCrear}
+                        {ListaCursos}
+                    </ul>
+                </div>
+            ):(
+                <div class="cargandoDiv">
+                  <h1 class="cargando">Cargando...</h1>
+                </div>
+              )}
         </div>
     );
   }

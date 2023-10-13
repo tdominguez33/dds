@@ -15,9 +15,14 @@
     table-layout: fixed;
 }
 
+.listaAlumnos th{
+    background-color: #00CC92;
+}
+
 .listaAlumnos td{
     font-family: 'Kanit';
     font-weight: 300;
+    background-color: white;
 }
 
 .tituloAlumnos{

@@ -1,6 +1,11 @@
 
 # Changelog
 
+## V1.0 - 13/10/2023
+- Añadida una pagina de Home con un poco de información del proyecto.
+- Ahora la lista de materiales de la página de creación de tema nos permite borrar los elementos añadidos.
+- Arreglados los mensajes de estado de subida que movian elementos.
+
 ## V0.10 - 12/10/2023
 - Cambios estéticos mayores (Cambios de colores, de posicionamientos, de fuente, entre otros menores).
 - Ahora los temas están ordenados en orden alfabético.

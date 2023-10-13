@@ -2,8 +2,9 @@ import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import "./css/App.css"
 import "./css/fuentes.css"
+import Home from './home';
 import Temas from './temas';
-import Alumnos from './Alumnos';
+import Alumnos from './alumnos';
 import CrearCurso from "./crearCurso"
 import CrearTema from './crearTema';
 import InfoCurso from "./infoCurso"
@@ -19,6 +20,7 @@ function App() {
         <Link to="/crearCurso/0"><a class="navbarBoton">Crear Curso</a></Link>
       </div>
       <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/temas/*" element={<Temas />} />
           <Route path="/alumnos" element={<Alumnos />} />
           <Route path="/crearCurso/:idTema" element={<CrearCurso />} />

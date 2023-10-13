@@ -18,9 +18,8 @@ function CrearCurso() {
     const [NombreCurso, setNombreCurso] = useState("")
     const [IdDocente, setIdDocente] = useState("")
     const fechaMinima = moment().add(1, 'days').format().slice(0, 10)
-    const horaMinima = moment().format().slice(11, 16)
     const [FechaCurso, setFechaCurso] = useState(fechaMinima)   // Valor predeterminado -> Fecha Actual
-    const [HoraCurso, setHoraCurso] = useState(horaMinima)      // Valor predeterminado -> Fecha Actual
+    const [HoraCurso, setHoraCurso] = useState("00:00")      // Valor predeterminado -> Fecha Actual
 
     // Valores relacionados al tema del curso
     const [IdTema, setIdTema] = useState("")
@@ -71,6 +70,12 @@ function CrearCurso() {
         }
     }
 
+    // Quitamos el cartel de error o éxito despues de unos segundos
+    useEffect(() => {
+        const timer = setTimeout(() => {setEstadoPOST(-1)}, 3000);
+        return () => clearTimeout(timer);
+    }, [EstadoPOST])
+
     const opcionesTemas = (json) => {
         let opciones = []
         if(idTema == 0){
@@ -114,16 +119,16 @@ function CrearCurso() {
 
     const mensajeEstado = () => {
         switch(EstadoPOST){
-            case -1:
-                return <p class="estadoSubidaCurso"></p>
             case 0:
                 return <p class="estadoSubidaCurso">Subida Exitosa</p>
             case 1:
                 return <p class="estadoSubidaCurso">Ingrese un nombre de curso de al menos 4 caracteres</p>
             case 2:
-                return <p class="estadoSubidaCurso">Ingrese un ID de docente</p>
+                return <p class="estadoSubidaCurso">Ingrese un ID de docente menor a 4</p>
             case 3:
                 return <p class="estadoSubidaCurso">Elija un tema de la lista</p>
+            default:
+                return <p class="estadoSubidaCurso"></p>
 
         }
     }
@@ -173,7 +178,7 @@ function CrearCurso() {
             setEstadoPOST(1)
             return
         }
-        if (IdDocente.length < 1){
+        if (IdDocente.length < 1 || IdDocente > 3){
             setEstadoPOST(2)
             return
         }
@@ -189,12 +194,23 @@ function CrearCurso() {
                 console.log("POST Exitoso!")
             })
 
+            // Vaciamos los campos
+            setNombreCurso("")
+            setIdDocente("")
+            setFechaCurso(moment().format().slice(0, 10))
+            setHoraCurso("00:00")
+
             setEstadoPOST(0)
     }
 
     return (
         <div>
-            <Link to={`/temas/cursos/${idTema}`}><button class="backButtonCrearCurso">&lt; Volver</button></Link>
+            {(idTema != 0) ? (
+                <Link to={`/temas/cursos/${idTema}`}><button class="backButtonCrearCurso">&lt; Volver</button></Link>
+            ) : (
+                <Link to={`/temas/`}><button class="backButtonCrearCurso">&lt; Volver</button></Link>
+            )}
+            
             <div class="containerCurso">
                 <h1 class="tituloCurso">Creación de Curso</h1>
                 <form class="formCreacionCurso">
@@ -219,16 +235,18 @@ function CrearCurso() {
                     </div>
                     
                     <label>Tema: </label>
-                    {/*Tengo dudas de como y porque la siguiente linea funciona, pero por ahora lo dejo así*/}
+                    {/*La siguiente linea funciona porque la lista tiene el nombre pero su valor interno es el ID*/}
                     <select value={IdTema} onChange={(e) => setIdTema(e.target.value)}>{ListaOpciones}</select>
 
                     <label>Fecha: </label>
                     <input type="date" value={FechaCurso} min={moment().format().slice(0, 10)} onChange={(e) => setFechaCurso(e.target.value)}/>
                     <label>Hora: </label>
-                    <input type="time" value={HoraCurso} min={moment().format().slice(11, 16)} onChange={(e) => setHoraCurso(e.target.value)}/>
-
-                    <button type="button" class="submitButtonCurso" onClick={crearCurso}>Crear Curso</button>
-                    {mensajeEstado()}
+                    <input type="time" value={HoraCurso} onChange={(e) => setHoraCurso(e.target.value)}/>
+                    
+                    <div class="submitCurso">
+                        <button type="button" class="submitButtonCurso" onClick={crearCurso}>Crear Curso</button>
+                        {mensajeEstado()}
+                    </div>
                     
 
                 </form>

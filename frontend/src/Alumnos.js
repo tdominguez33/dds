@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./css/alumnos.css"
 
 function Alumnos(){
-    const [ListaAlumnos, setListaAlumnos] = useState(null)
+    const [ListaAlumnos, setListaAlumnos] = useState([])
     
     useEffect(() => {
         // Realiza la solicitud a la URL
@@ -33,17 +33,26 @@ function Alumnos(){
 
     return(
         <div>
-            <h1 class="tituloAlumnos">Lista de Alumnos:</h1>
-            <div class="listaAlumnos">
-                <table class="tablaAlumnos">
-                    <tr>
-                        <th class="columnaID">ID</th>
-                        <th class="columnaNombre">Nombre</th>
-                        <th class="columnaFechaNacimiento">Fecha de Nacimiento</th>
-                    </tr>
-                    {ListaAlumnos}
-                </table>
-            </div>
+            {(ListaAlumnos != []) ? (
+                <div>
+                    <h1 class="tituloAlumnos">Lista de Alumnos:</h1>
+                    <div class="listaAlumnos">
+                        <table class="tablaAlumnos">
+                            <tr>
+                                <th class="columnaID">ID</th>
+                                <th class="columnaNombre">Nombre</th>
+                                <th class="columnaFechaNacimiento">Fecha de Nacimiento</th>
+                            </tr>
+                            {ListaAlumnos}
+                        </table>
+                    </div>
+                </div>
+            ) : (
+                <div class="cargandoDiv">
+                    <h1 class="cargando">Cargando...</h1> 
+                </div>
+            )}
+            
         </div>
     )
 }

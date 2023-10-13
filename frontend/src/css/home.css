@@ -1,0 +1,9 @@
+.tituloHome {
+    text-align: center;
+}
+
+.textoHome {
+    text-align: justify;
+    margin: 0 auto;
+    width: 50%;
+}

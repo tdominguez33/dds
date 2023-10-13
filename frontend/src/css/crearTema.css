@@ -137,7 +137,14 @@
     width: 100%;
 }
 
+.submitTema{
+    display: grid;
+    grid-template-areas: 'boton estado';
+    grid-template-columns: 1fr 2fr;
+}
+
 .submitButtonTema{
+    grid-area: boton;
     background-color: #00A375;
     text-align: center;
     color: white;
@@ -147,7 +154,6 @@
     transition-duration: 0.4s;
     border: 2px solid #00A375;
     cursor: pointer;
-    display:inline-block;
 }
 
 .submitButtonTema:hover{
@@ -156,6 +162,8 @@
 }
 
 .estadoSubidaTema{
+    grid-area: estado;
     display:inline-block;
-    margin-left: 15px;
+    font-size: 14px;
+    margin: 5px;
 }

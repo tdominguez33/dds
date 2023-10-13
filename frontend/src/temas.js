@@ -80,8 +80,8 @@ function Temas() {
         </div>
         
       ) : (
-        <div class="centered">
-          <h1 class="title">Cargando...</h1>
+        <div class="cargandoDiv">
+          <h1 class="cargando">Cargando...</h1>
         </div>
       )}
     </div>

@@ -17,10 +17,6 @@ function CrearTema() {
     // Variable que habilita el botón para agregar un material
     const [HabilitarBoton, setHabilitarBoton] = useState(false)
 
-    // Código HTMl
-    const [ListaMateriales, setListaMateriales] = useState([])
-    var varCodigoHTML = [];
-
     // Configuración del POST
     const [RequestOptionsTema, setRequestOptionsTema] = useState("")
 
@@ -59,31 +55,31 @@ function CrearTema() {
     }
 
     const agregarMaterialLista = () => {
-        let listaHTML = []
         let lista = []
-        for(let i = 0; i < ListaMateriales.length; i++){
-            listaHTML.push(ListaMateriales[i])
+        for(let i = 0; i < Materiales.length; i++){
             lista.push(Materiales[i])
         }
-        listaHTML.push(<tr><td>{NombreMaterial}</td><td>{CostoMaterial}</td><td>{StockMaterial}</td><td><button type ="button" class="deleteMaterial" onClick={() => removerMaterialLista(listaHTML.length - 1)}>X</button></td></tr>)
         lista.push({titulo: NombreMaterial, costo: CostoMaterial, stock: StockMaterial})
-        setListaMateriales(listaHTML)
         setMateriales(lista)
         // Borramos los campos
         setNombreMaterial("")
         setCostoMaterial("")
         setStockMaterial("")
-
-        // Borrado de elementos [NO FUNCIONA]
-        varCodigoHTML = listaHTML
     }
 
-    // NO FUNCIONA
+    // Creamos el código HTML basado en la lista
+    const listaMaterialesHTML = () => {
+        let html = []
+        for(let i = 0; i < Materiales.length; i++){
+            html.push(<tr><td>{Materiales[i].titulo}</td><td>{Materiales[i].costo}</td><td>{Materiales[i].stock}</td><td><button type ="button" class="deleteMaterial" onClick={() => removerMaterialLista(i)}>X</button></td></tr>)
+        }
+        return html
+    }
+
     const removerMaterialLista = (posicion) => {
-        let listaHTML = varCodigoHTML
-        listaHTML.splice(posicion, 1)
-        varCodigoHTML = listaHTML
-        setListaMateriales(listaHTML)
+        let lista = [...Materiales]
+        lista.splice(posicion, 1)
+        setMateriales(lista)
     }
 
     // Habilitamos el boton de carga de datos basados en si hay cosas escritas en los campos o no
@@ -174,7 +170,6 @@ function CrearTema() {
             fetch('http://localhost:8010/proxy/materiales', requestOptionsMateriales)
             .then((response) => {
                 if (!response.ok) {
-                    console.log(Materiales[i].nombre)
                     throw new Error('Error en la solicitud')
                 }
                 console.log("POST (Material) Exitoso!")
@@ -216,18 +211,19 @@ function CrearTema() {
                                     <th class="columnaStockMaterial">Stock</th>
                                     <th class="columnaAccionMaterial"></th>
                                 </tr>
-                                {ListaMateriales}
+                                {listaMaterialesHTML()}
                                 <tr>
                                     <td class="celdaInput"><input type="text" placeholder="Nombre..." class="inputNombreMaterial" value={NombreMaterial} maxLength="25" onChange={(e) => setNombreMaterial(e.target.value)}/></td>
                                     <td class="celdaInput"><input type="text" placeholder="Costo..." class="inputCostoMaterial" value={CostoMaterial} maxLength="9" onChange={(e) => verificarNumero(e.target.value, setCostoMaterial)}/></td>
                                     <td class="celdaInput"><input type="text" placeholder="Stock..." class="inputStockMaterial" value={StockMaterial} maxLength="6" onChange={(e) => verificarNumero(e.target.value, setStockMaterial)}/></td>
-                                    <td class="celdaInput"><button type="button" class="submitMaterial" disabled={HabilitarBoton} onClick={() => agregarMaterialLista()}>+</button></td>
+                                    <td class="celdaInput"><button type="button" class="submitMaterial" disabled={HabilitarBoton} onClick={agregarMaterialLista}>+</button></td>
                                 </tr>
                         </table>
                     </div>
-
-                    <button type="button" class="submitButtonTema" onClick={crearTema}>Crear Tema</button>
-                    {mensajeEstado()}
+                    <div class="submitTema">
+                        <button type="button" class="submitButtonTema" onClick={crearTema}>Crear Tema</button>
+                        {mensajeEstado()}
+                    </div>
                 </form>
             </div>
         </div>
