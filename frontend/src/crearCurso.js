@@ -38,7 +38,7 @@ function CrearCurso() {
     // Ejecutamos cuando se carga la página
     useEffect(() => {
         // Realiza la solicitud a la URL
-        fetch('http://localhost:8010/proxy/temas')
+        fetch('http://localhost:8080/temas')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Error en la solicitud')
@@ -186,7 +186,7 @@ function CrearCurso() {
             setEstadoPOST(3)
             return
         }
-        fetch('http://localhost:8010/proxy/cursos', RequestOptions)
+        fetch('http://localhost:8080/cursos', RequestOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Error en la solicitud')

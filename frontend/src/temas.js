@@ -8,7 +8,7 @@ function Temas() {
 
   useEffect(() => {
     // Realiza la solicitud a la URL
-    fetch('http://localhost:8010/proxy/temas')
+    fetch('http://localhost:8080/temas')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error en la solicitud')

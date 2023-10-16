@@ -10,7 +10,7 @@ function Cursos(props) {
     
     useEffect(() => {
         // Realiza la solicitud a la URL
-        fetch('http://localhost:8010/proxy/cursos')
+        fetch('http://localhost:8080/cursos')
         .then((response) => {
             if (!response.ok) {
                 throw new Error('Error en la solicitud')
@@ -29,7 +29,7 @@ function Cursos(props) {
     // Cambiamos el titulo de la pagina cada vez que cambiamos de tema
     useEffect(() => {
         // Realiza la solicitud a la URL
-        let url = 'http://localhost:8010/proxy/temas/' + id
+        let url = 'http://localhost:8080/temas/' + id
         fetch(url)
         .then((response) => {
             if (!response.ok) {

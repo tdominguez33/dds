@@ -1,6 +1,10 @@
 
 # Changelog
 
+## V1.1 - 16/10/2023
+- Cambiadas todas las referencias al proxy para dejar el código listo para su ejecución en el container de Docker.
+- Agregados los archivos del backend (para preservación más que nada).
+
 ## V1.0 - 13/10/2023
 - Añadida una pagina de Home con un poco de información del proyecto.
 - Ahora la lista de materiales de la página de creación de tema nos permite borrar los elementos añadidos.

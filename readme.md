@@ -2,7 +2,11 @@
 
 Trabajo práctico, comunicación de frontend React con Backend Java y base de datos MySQL dockerizada.
 
-#### Pasos para su correcta ejecución:
+Todo el contenido de la carpeta 'backend' fue provisto por la cátedra.
+
+La aplicación está disponible integrada en el backend como un contenedor de docker en [Docker Hub](hub.docker.com/r/tdominguez33/dds-2023).
+
+#### Pasos para ejecución en desarrollo:
 
 - Abrimos Docker y ejecutamos el contenedor con la imagen <i>"cherckyto/dds-mysql:1.0"</i>
 - Abrimos Eclipse y vamos a src/main/java/com.example.demo y ejecutamos <i>"DemoApplication.java"</i> como <i>"Java Application"</i>

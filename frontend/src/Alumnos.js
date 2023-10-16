@@ -6,7 +6,7 @@ function Alumnos(){
     
     useEffect(() => {
         // Realiza la solicitud a la URL
-        fetch('http://localhost:8010/proxy/alumnos')
+        fetch('http://localhost:8080/alumnos')
         .then((response) => {
             if (!response.ok) {
                 throw new Error('Error en la solicitud')
@@ -33,26 +33,17 @@ function Alumnos(){
 
     return(
         <div>
-            {(ListaAlumnos != []) ? (
-                <div>
-                    <h1 class="tituloAlumnos">Lista de Alumnos:</h1>
-                    <div class="listaAlumnos">
-                        <table class="tablaAlumnos">
-                            <tr>
-                                <th class="columnaID">ID</th>
-                                <th class="columnaNombre">Nombre</th>
-                                <th class="columnaFechaNacimiento">Fecha de Nacimiento</th>
-                            </tr>
-                            {ListaAlumnos}
-                        </table>
-                    </div>
-                </div>
-            ) : (
-                <div class="cargandoDiv">
-                    <h1 class="cargando">Cargando...</h1> 
-                </div>
-            )}
-            
+            <h1 class="tituloAlumnos">Lista de Alumnos:</h1>
+            <div class="listaAlumnos">
+                    <table class="tablaAlumnos">
+                    <tr>
+                        <th class="columnaID">ID</th>
+                        <th class="columnaNombre">Nombre</th>
+                        <th class="columnaFechaNacimiento">Fecha de Nacimiento</th>
+                    </tr>
+                    {ListaAlumnos}
+                </table>
+            </div>
         </div>
     )
 }

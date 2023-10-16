@@ -15,7 +15,7 @@ function InfoCurso(){
     
     const [ListaFiltrada, setListaFiltrada] = useState([])
     
-    const url = 'http://localhost:8010/proxy/cursos/' + idCurso // URL que devuelve el curso específico
+    const url = 'http://localhost:8080/cursos/' + idCurso // URL que devuelve el curso específico
 
     // Ejecutamos al cargar la página
     useEffect(() => {
@@ -36,7 +36,7 @@ function InfoCurso(){
             return data.tema.id
         })
         .then((idTema) => {
-            fetch('http://localhost:8010/proxy/materiales/')
+            fetch('http://localhost:8080/materiales/')
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error('Error en la solicitud')

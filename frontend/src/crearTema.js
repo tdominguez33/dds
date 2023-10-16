@@ -142,7 +142,7 @@ function CrearTema() {
         }
 
 
-        fetch('http://localhost:8010/proxy/temas', RequestOptionsTema)
+        fetch('http://localhost:8080/temas', RequestOptionsTema)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Error en la solicitud')
@@ -167,7 +167,7 @@ function CrearTema() {
                     body: requestBodyMateriales(Materiales[i].titulo, Materiales[i].costo, idTema, Materiales[i].stock)
                 }
             
-            fetch('http://localhost:8010/proxy/materiales', requestOptionsMateriales)
+            fetch('http://localhost:8080/materiales', requestOptionsMateriales)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Error en la solicitud')
