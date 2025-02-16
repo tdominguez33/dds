@@ -1,10 +1,10 @@
 # Diseño de Sistemas 2023 - UTN FRD
 
-Trabajo práctico, comunicación de frontend React con Backend Java y base de datos MySQL dockerizada.
+Trabajo práctico, diseño y comunicación de frontend React con backend Java y base de datos MySQL dockerizada.
 
 Todo el contenido de la carpeta 'backend' fue provisto por la cátedra.
 
-La aplicación está disponible integrada en el backend como un contenedor de docker en [Docker Hub](hub.docker.com/r/tdominguez33/dds-2023).
+La aplicación está disponible integrada en el backend como un contenedor de Docker en [Docker Hub](https://hub.docker.com/r/tdominguez33/dds-2023).
 
 #### Pasos para ejecución en desarrollo:
 
